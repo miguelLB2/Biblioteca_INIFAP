@@ -1,0 +1,18 @@
+{
+  "name": "repositorio-inifap",
+  "version": "2.0.0",
+  "description": "Repositorio de Publicaciones - INIFAP Campo Experimental Valle del Guadiana, Durango",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "importar": "node importar_pdfs.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "multer": "^2.0.2",
+    "mysql2": "^3.9.7",
+    "qrcode": "^1.5.3"
+  }
+}

@@ -1,0 +1,572 @@
+/* =====================================================================
+   estilos.css - Repositorio de Publicaciones INIFAP Durango
+   Sirve para index.html (portal público) y admin.html (panel).
+   Para cambiar los colores institucionales edita solo el bloque :root
+   ===================================================================== */
+
+:root {
+    --guinda: #611232;
+    --guinda-oscuro: #470c25;
+    --rosa: #9b2247;
+    --rosa-claro: #b8446a;
+    --fondo: #f3eff0;
+    --blanco: #ffffff;
+    --tinta: #241a1e;
+    --tinta-suave: #6a5a61;
+    --linea: #e0d5da;
+    --sombra-bloque: 7px 7px 0 rgba(97, 18, 50, 0.16);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--tinta);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+:focus-visible {
+    outline: 3px solid var(--rosa);
+    outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------------------
+   CABECERA: logo INIFAP | título | logo Durango + franja de 3 barras
+   --------------------------------------------------------------------- */
+.cabecera {
+    background: var(--blanco);
+}
+
+.cabecera-interior {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 20px 24px 18px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.logo {
+    height: 68px;
+    width: auto;
+    flex-shrink: 0;
+}
+
+.cabecera-titulos {
+    flex: 1;
+    min-width: 0;
+}
+
+.cabecera-institucion {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--tinta-suave);
+}
+
+.cabecera-titulos h1 {
+    font-size: clamp(1.5rem, 3.2vw, 2.35rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--guinda);
+    letter-spacing: -0.01em;
+}
+
+.franja {
+    display: flex;
+    gap: 12px;
+}
+
+.franja span {
+    flex: 1;
+    height: 9px;
+    border-radius: 5px;
+}
+.franja span:nth-child(1) { background: var(--guinda-oscuro); }
+.franja span:nth-child(2) { background: var(--guinda); }
+.franja span:nth-child(3) { background: var(--rosa); }
+
+/* ---------------------------------------------------------------------
+   CONTENIDO PRINCIPAL
+   --------------------------------------------------------------------- */
+.principal {
+    flex: 1;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 36px 24px 56px;
+}
+
+/* Buscador (pastilla con lupa) */
+.buscador {
+    max-width: 660px;
+    margin: 0 auto 34px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--blanco);
+    border: 1.5px solid var(--linea);
+    border-radius: 999px;
+    padding: 6px 8px 6px 8px;
+    box-shadow: 0 6px 18px rgba(97, 18, 50, 0.12);
+}
+
+.buscador:focus-within {
+    border-color: var(--rosa);
+}
+
+.buscador button {
+    width: 46px;
+    height: 46px;
+    border: none;
+    border-radius: 50%;
+    background: var(--rosa);
+    color: var(--blanco);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s;
+}
+.buscador button:hover { background: var(--guinda); }
+
+.buscador input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font: inherit;
+    font-size: 1.05rem;
+    color: var(--tinta);
+    padding: 8px 4px;
+}
+.buscador input::placeholder { color: #85767c; }
+
+/* Ruta de navegación (Inicio > Agrícola > Folletos) */
+.ruta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: var(--tinta-suave);
+    margin-bottom: 14px;
+}
+.ruta a {
+    color: var(--rosa);
+    font-weight: 600;
+    text-decoration: none;
+}
+.ruta a:hover { text-decoration: underline; }
+.ruta .actual { font-weight: 600; color: var(--tinta); }
+.ruta .separador { color: #b3a5ab; }
+
+.titulo-seccion {
+    text-align: center;
+    font-size: clamp(1.4rem, 3vw, 2.1rem);
+    font-weight: 800;
+    color: var(--tinta);
+    margin-bottom: 8px;
+}
+.titulo-seccion:focus { outline: none; }
+
+.subtitulo-seccion {
+    text-align: center;
+    color: var(--tinta-suave);
+    margin-bottom: 30px;
+}
+
+/* ---------------------------------------------------------------------
+   TARJETAS DE ÁREA (con foto)
+   --------------------------------------------------------------------- */
+.rejilla-areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1020px;
+    margin: 0 auto;
+}
+
+.tarjeta-area {
+    display: flex;
+    flex-direction: column;
+    background: var(--blanco);
+    border-radius: 16px;
+    padding: 12px 12px 16px;
+    text-decoration: none;
+    box-shadow: 0 8px 22px rgba(36, 26, 30, 0.16);
+    transition: transform 0.18s, box-shadow 0.18s;
+}
+.tarjeta-area:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(36, 26, 30, 0.22);
+}
+
+.area-foto {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    /* 1a capa: sombreado | 2a capa: la foto | 3a capa: color de respaldo si no hay foto */
+    background-image:
+        linear-gradient(to top, rgba(36, 10, 22, 0.55), rgba(36, 10, 22, 0.08) 65%),
+        var(--foto),
+        linear-gradient(135deg, var(--guinda) 0%, var(--rosa) 100%);
+    background-size: cover;
+    background-position: center;
+}
+
+.area-nombre {
+    font-size: clamp(1.7rem, 3vw, 2.1rem);
+    font-weight: 800;
+    color: var(--blanco);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+}
+
+.area-descripcion {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--linea);
+    text-align: center;
+    font-weight: 500;
+    color: var(--tinta);
+    min-height: 3.2em;
+}
+
+.area-total {
+    margin-top: 6px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--rosa);
+}
+
+/* ---------------------------------------------------------------------
+   TARJETAS DE FORMATO (borde guinda y sombra desplazada)
+   --------------------------------------------------------------------- */
+.rejilla-formatos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 34px 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.tarjeta-formato {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: var(--blanco);
+    border: 2px solid var(--guinda);
+    border-radius: 16px;
+    padding: 22px 18px 20px;
+    text-decoration: none;
+    box-shadow: var(--sombra-bloque);
+    transition: transform 0.18s, box-shadow 0.18s;
+}
+.tarjeta-formato:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 10px 10px 0 rgba(97, 18, 50, 0.22);
+}
+
+.tarjeta-formato h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--rosa);
+    line-height: 1.15;
+    min-height: 2.3em;
+    display: grid;
+    align-items: center;
+}
+
+.formato-icono {
+    width: 116px;
+    height: 116px;
+    margin: 8px 0 12px;
+}
+
+.tarjeta-formato p {
+    font-size: 0.95rem;
+    color: var(--tinta);
+    flex: 1;
+}
+
+.formato-total {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--rosa);
+}
+
+.tarjeta-formato.vacia { opacity: 0.55; }
+
+/* ---------------------------------------------------------------------
+   RESULTADOS: portada + título + Ver / Descargar
+   --------------------------------------------------------------------- */
+.rejilla-publicaciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+    gap: 26px 22px;
+}
+
+.tarjeta-publicacion {
+    display: flex;
+    flex-direction: column;
+    background: var(--blanco);
+    border: 1.5px solid var(--linea);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+.tarjeta-publicacion:hover {
+    border-color: var(--rosa-claro);
+    box-shadow: 0 10px 24px rgba(97, 18, 50, 0.14);
+}
+
+.portada {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    background: #ebe3e6;
+    overflow: hidden;
+    display: block;
+}
+.portada img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* Cuando el PDF aún no tiene imagen de portada */
+.portada-vacia {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(160deg, var(--guinda) 0%, var(--rosa) 100%);
+    color: var(--blanco);
+}
+.portada-vacia svg { width: 44px; height: 44px; opacity: 0.9; }
+.portada-vacia strong { font-size: 1.7rem; font-weight: 800; }
+
+.publicacion-cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 14px 14px;
+    flex: 1;
+}
+
+.publicacion-titulo {
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--tinta);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+}
+
+.publicacion-meta {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--tinta-suave);
+}
+
+.publicacion-acciones {
+    margin-top: auto;
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    border: 2px solid var(--guinda);
+    background: var(--guinda);
+    color: var(--blanco);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+.boton:hover { background: var(--guinda-oscuro); border-color: var(--guinda-oscuro); }
+.boton svg { width: 17px; height: 17px; }
+
+.boton-borde {
+    background: var(--blanco);
+    color: var(--guinda);
+}
+.boton-borde:hover { background: var(--guinda); color: var(--blanco); }
+
+.boton-ancho { width: 100%; padding: 13px; font-size: 1.05rem; }
+
+.mostrar-mas {
+    display: block;
+    margin: 34px auto 0;
+    padding-left: 34px;
+    padding-right: 34px;
+}
+
+/* Estados: cargando, sin resultados, error */
+.mensaje-estado {
+    max-width: 520px;
+    margin: 30px auto;
+    padding: 30px 24px;
+    text-align: center;
+    background: var(--blanco);
+    border: 1.5px dashed #c9b7bf;
+    border-radius: 14px;
+    color: var(--tinta-suave);
+}
+.mensaje-estado strong { display: block; color: var(--tinta); font-size: 1.1rem; margin-bottom: 6px; }
+.mensaje-estado .boton { margin-top: 16px; }
+
+/* ---------------------------------------------------------------------
+   PIE DE PÁGINA
+   --------------------------------------------------------------------- */
+.pie {
+    background: var(--blanco);
+    border-top: 1px solid var(--linea);
+    padding: 20px 24px;
+    text-align: center;
+    font-size: 0.88rem;
+    color: var(--tinta-suave);
+}
+.pie strong { color: var(--tinta); }
+.pie a { color: var(--rosa); font-weight: 600; }
+
+/* ---------------------------------------------------------------------
+   PANEL DE ADMINISTRACIÓN (admin.html)
+   --------------------------------------------------------------------- */
+.panel {
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--blanco);
+    border: 2px solid var(--guinda);
+    border-radius: 16px;
+    box-shadow: var(--sombra-bloque);
+    padding: 30px;
+}
+
+.campo { margin-bottom: 20px; }
+
+.campo label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1.5px solid #cdbfc5;
+    border-radius: 8px;
+    font: inherit;
+    background: var(--blanco);
+}
+.campo input:focus,
+.campo select:focus { border-color: var(--rosa); outline: none; }
+
+.campo-doble {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.ayuda { font-size: 0.82rem; color: var(--tinta-suave); margin-top: 4px; }
+
+.oculto { display: none !important; }
+
+#resultado {
+    margin-top: 28px;
+    padding-top: 26px;
+    border-top: 2px dashed #cdbfc5;
+    text-align: center;
+}
+#resultado h2 { color: var(--guinda); margin-bottom: 6px; }
+.resultado-imagenes {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin: 18px 0;
+}
+.resultado-imagenes img {
+    width: 190px;
+    border: 2px solid var(--guinda);
+    border-radius: 10px;
+}
+.resultado-imagenes figcaption { font-size: 0.82rem; color: var(--tinta-suave); margin-top: 6px; }
+.resultado-acciones { display: grid; gap: 10px; max-width: 320px; margin: 0 auto; }
+
+.error-formulario {
+    background: #fbe9ee;
+    border: 1.5px solid var(--rosa);
+    color: var(--guinda-oscuro);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------
+   RESPONSIVO
+   --------------------------------------------------------------------- */
+@media (max-width: 720px) {
+    .cabecera-interior {
+        flex-wrap: wrap;
+        gap: 12px 16px;
+        padding: 16px 16px 14px;
+    }
+    .logo { height: 50px; }
+    .cabecera-titulos { order: 3; flex-basis: 100%; }
+    .logo-durango { margin-left: auto; }
+    .principal { padding: 26px 16px 44px; }
+    .rejilla-publicaciones { grid-template-columns: repeat(2, 1fr); gap: 16px 12px; }
+    .publicacion-cuerpo { padding: 10px; }
+    .publicacion-titulo { font-size: 0.9rem; }
+    .publicacion-acciones { grid-template-columns: 1fr; }
+    .campo-doble { grid-template-columns: 1fr; }
+    .panel { padding: 22px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración | Repositorio de Publicaciones INIFAP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <header class="cabecera">
+        <div class="cabecera-interior">
+            <a href="index.html" aria-label="Ir al repositorio">
+                <img class="logo logo-inifap" src="img/logo-inifap.png" alt="Logotipo del INIFAP">
+            </a>
+            <div class="cabecera-titulos">
+                <p class="cabecera-institucion">INIFAP – Campo Experimental Valle del Guadiana, Durango</p>
+                <h1>Administración del repositorio</h1>
+            </div>
+            <img class="logo logo-durango" src="img/logo-durango.png" alt="Logotipo del Gobierno de Durango">
+        </div>
+        <div class="franja" aria-hidden="true"><span></span><span></span><span></span></div>
+    </header>
+
+    <main class="principal">
+        <div class="panel">
+            <h2 class="titulo-seccion" style="text-align:left">Subir una publicación</h2>
+            <p class="subtitulo-seccion" style="text-align:left">
+                Sube el PDF, elige su área y formato. Se generará la portada y un código QR.
+            </p>
+
+            <div id="mensajeError" class="error-formulario oculto" role="alert"></div>
+
+            <form id="formularioPublicacion">
+                <div class="campo">
+                    <label for="titulo">Título de la publicación</label>
+                    <input type="text" id="titulo" name="titulo" required maxlength="500">
+                </div>
+
+                <div class="campo-doble">
+                    <div class="campo">
+                        <label for="id_area">Área de interés</label>
+                        <select id="id_area" name="id_area" required>
+                            <option value="">Selecciona...</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label for="id_formato">Formato</label>
+                        <select id="id_formato" name="id_formato" required>
+                            <option value="">Selecciona...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="anio">Año de publicación</label>
+                    <input type="number" id="anio" name="anio" min="1970" max="2100" value="2026">
+                </div>
+
+                <div class="campo">
+                    <label for="archivoPdf">Archivo PDF</label>
+                    <input type="file" id="archivoPdf" name="archivoPdf" accept="application/pdf" required>
+                </div>
+
+                <div class="campo">
+                    <label for="clave">Clave de administrador</label>
+                    <input type="password" id="clave" name="clave" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="boton boton-ancho" id="botonGuardar">Guardar y generar QR</button>
+            </form>
+
+            <div id="resultado" class="oculto">
+                <h2>Publicación guardada</h2>
+                <p>Descarga el código QR para imprimirlo en carteles o folletos.</p>
+                <div class="resultado-imagenes">
+                    <figure id="figuraPortada" class="oculto">
+                        <img id="imagenPortada" src="" alt="Portada de la publicación">
+                        <figcaption>Portada</figcaption>
+                    </figure>
+                    <figure>
+                        <img id="imagenQr" src="" alt="Código QR de la publicación">
+                        <figcaption>Código QR</figcaption>
+                    </figure>
+                </div>
+                <div class="resultado-acciones">
+                    <a id="botonDescargarQr" href="" download="qr-publicacion.png" class="boton">Descargar QR</a>
+                    <a href="index.html" class="boton boton-borde">Ver el repositorio</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="pie">
+        <p>&copy; 2026 INIFAP. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositorio de Publicaciones | INIFAP Durango</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- CABECERA: logo INIFAP (izquierda), título, logo Durango (derecha).
+         Para cambiar los logos reemplaza los archivos de la carpeta img/ -->
+    <header class="cabecera">
+        <div class="cabecera-interior">
+            <a href="index.html" aria-label="Ir al inicio">
+                <img class="logo logo-inifap" src="img/logo-inifap.png" alt="Logotipo del INIFAP">
+            </a>
+            <div class="cabecera-titulos">
+                <p class="cabecera-institucion">INIFAP – Campo Experimental Valle del Guadiana, Durango</p>
+                <h1>Repositorio de Publicaciones</h1>
+            </div>
+            <img class="logo logo-durango" src="img/logo-durango.png" alt="Logotipo del Gobierno de Durango">
+        </div>
+        <div class="franja" aria-hidden="true"><span></span><span></span><span></span></div>
+    </header>
+
+    <main class="principal">
+
+        <!-- BUSCADOR -->
+        <form id="formBuscador" class="buscador" role="search">
+            <button type="submit" aria-label="Buscar">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+                    <circle cx="10.5" cy="10.5" r="6.5"></circle>
+                    <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+                </svg>
+            </button>
+            <input id="campoBusqueda" type="search" autocomplete="off"
+                   placeholder="Buscador (ingresa palabras clave...)"
+                   aria-label="Buscar publicaciones por palabras clave">
+        </form>
+
+        <!-- Aquí js/portal.js dibuja: áreas -> formatos -> publicaciones -->
+        <section id="vista" aria-live="polite"></section>
+
+    </main>
+
+    <footer class="pie">
+        <p><strong>Instituto Nacional de Investigaciones Forestales, Agrícolas y Pecuarias</strong></p>
+        <p>Campo Experimental Valle del Guadiana, Durango &nbsp;|&nbsp; <a href="admin.html">Administración</a></p>
+        <p>&copy; 2026 INIFAP. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/portal.js"></script>
+</body>
+</html>
