@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración INIFAP</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Subir Folleto INIFAP</h1>
+    </header>
+    
+    <main class="contenedor">
+        <form id="formularioFolleto">
+            <div class="campo">
+                <label for="titulo">Título del Folleto:</label>
+                <input type="text" id="titulo" name="titulo" required>
+            </div>
+
+            <div class="campo">
+                <label for="descripcion">Descripción Breve:</label>
+                <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+            </div>
+
+            <div class="campo">
+                <label for="autor">Autor / Investigador:</label>
+                <input type="text" id="autor" name="autor">
+            </div>
+
+            <div class="campo">
+                <label for="anio">Año de Publicación:</label>
+                <input type="number" id="anio" name="anio" min="1990" max="2030" value="2024">
+            </div>
+
+            <div class="campo">
+                <label for="id_categoria">Categoría (Área):</label>
+                <select id="id_categoria" name="id_categoria" required>
+                    <!-- Las opciones se cargarán con JavaScript -->
+                    <option value="">Seleccione una categoría...</option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label for="archivoPdf">Archivo PDF:</label>
+                <input type="file" id="archivoPdf" name="archivoPdf" accept="application/pdf" required>
+            </div>
+
+            <button type="submit" class="btn">Guardar y Generar QR</button>
+        </form>
+
+        <div id="resultado" class="oculto">
+            <h2>¡Folleto Subido con Éxito!</h2>
+            <p>Descarga este Código QR e imprímelo para tus carteles.</p>
+            <img id="imagenQr" src="" alt="Código QR del Folleto">
+            <br>
+            <a id="btnDescargarQr" href="" download="qr-inifap.png" class="btn">Descargar QR</a>
+        </div>
+    </main>
+
+    <script>
+        // 1. Cargar las categorías cuando carga la página
+        document.addEventListener('DOMContentLoaded', async () => {
+            const selectCategoria = document.getElementById('id_categoria');
+            try {
+                const respuesta = await fetch('/api/categorias');
+                const categorias = await respuesta.json();
+                
+                categorias.forEach(cat => {
+                    const opcion = document.createElement('option');
+                    opcion.value = cat.id;
+                    opcion.textContent = cat.nombre;
+                    selectCategoria.appendChild(opcion);
+                });
+            } catch (error) {
+                console.error("No se pudieron cargar las categorías", error);
+            }
+        });
+
+        // 2. Enviar el formulario al backend
+        const formulario = document.getElementById('formularioFolleto');
+        formulario.addEventListener('submit', async (evento) => {
+            evento.preventDefault(); // Evita que recargue la página
+
+            const formData = new FormData(formulario);
+            
+            try {
+                const respuesta = await fetch('/api/folletos', {
+                    method: 'POST',
+                    body: formData
+                });
+                const datos = await respuesta.json();
+
+                if(respuesta.ok) {
+                    // Mostrar el QR en pantalla
+                    const divResultado = document.getElementById('resultado');
+                    const imgQr = document.getElementById('imagenQr');
+                    const btnDescargar = document.getElementById('btnDescargarQr');
+
+                    imgQr.src = datos.qr;
+                    btnDescargar.href = datos.qr;
+                    divResultado.classList.remove('oculto');
+                    formulario.reset();
+                } else {
+                    alert('Error: ' + datos.error);
+                }
+            } catch (error) {
+                alert('Ocurrió un error al enviar los datos');
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>
